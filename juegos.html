@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Juegos - Ocean Life</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="Css/estilos.css"/>
+</head>
+<body>
+  <div id="scroll-progress-bar"></div>
+<nav>
+    <a href="index.html" class="nav-logo">
+      <img src="Img/logo.png" alt="logo" style="width:32px;border-radius:50%;">
+      OCEAN <span>LIFE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="animales.html">Animales</a></li>
+      <li><a href="ecosistemas.html">Ecosistemas</a></li>
+      <li><a href="contaminacion.html">Contaminación</a></li>
+      <li><a href="inmersion.html">Inmersión</a></li>
+    <li><a href="juegos.html" class="active">Juegos</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" style="min-height:40vh; padding-top:8rem;">
+    <p class="hero-eyebrow">Poné a prueba tus conocimientos</p>
+    <h1>🎮 Juegos <em>Marinos</em></h1>
+    <p class="hero-sub">¿Cuánto sabés sobre el océano? ¡Descubrilo!</p>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#041426"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="explore">
+    <p class="section-label">Quiz interactivo</p>
+    <h2>Trivia del océano</h2>
+    <p class="explore-sub">10 preguntas aleatorias, ¿podés sacar el puntaje perfecto?</p>
+
+    <div class="quiz-box">
+      <div class="quiz-header">
+        <p id="numero" class="numero-pregunta">Pregunta 1 de 10</p>
+        <p id="puntaje-actual" class="puntaje-actual">⭐ 0 pts</p>
+      </div>
+      <div class="progreso-barra">
+        <div id="barra-progreso"></div>
+      </div>
+      <h2 id="pregunta" class="quiz-pregunta">Cargando pregunta...</h2>
+      <div class="opciones" id="opciones"></div>
+      <p id="resultado" class="quiz-resultado"></p>
+      <button id="siguiente" class="btn-primary" onclick="siguientePregunta()" style="display:none; margin-top:1rem;">
+        Siguiente →
+      </button>
+      <div id="final-box" class="final-box" style="display:none;">
+        <p id="puntaje" class="puntaje-final"></p>
+        <button class="btn-primary" onclick="location.reload()" style="margin-top:1rem;">🔄 Jugar de nuevo</button>
+      </div>
+    </div>
+  </section>
+
+
+  <footer>
+    <p class="footer-logo">OCEAN <span>LIFE</span></p>
+    <p class="footer-copy">© 2026 Ocean Life — Todos los derechos reservados</p>
+  </footer>
+  <script src="js/juego.js"></script>
+  <script src="efecto.js"></script>
+<button id="btn-back-to-top" title="Volver arriba" aria-label="Volver arriba">↑</button>
+</body>
+</html>

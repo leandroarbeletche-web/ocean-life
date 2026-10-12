@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simulador de Inmersión - Ocean Life</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=700;900&family=Inter:wght=300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="Css/estilos.css"/>
+  <style>
+
+    .sim-container {
+      display: flex;
+      max-width: 1000px;
+      margin: 2rem auto 5rem auto;
+      gap: 3rem;
+      padding: 0 1.5rem;
+      align-items: stretch;
+      min-height: 60vh;
+    }
+
+    .slider-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 2rem 1rem;
+      border-radius: 20px;
+      min-width: 100px;
+    }
+
+    .slider-container {
+      position: relative;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vertical-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 8px;
+      height: 100%;
+      background: linear-gradient(to bottom, #38bdf8, #0369a1, #020617);
+      border-radius: 4px;
+      outline: none;
+      writing-mode: bt-lr; 
+      transform: rotate(0deg); 
+    }
+    
+    input[type=range].vertical-slider {
+      transform: rotate(90deg);
+      width: 380px;
+      position: absolute;
+    }
+
+    input[type=range].vertical-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 2px solid #0284c7;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255,255,255,0.5);
+      transition: transform 0.1s;
+    }
+    input[type=range].vertical-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    .depth-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .info-display {
+      flex: 1;
+      background: rgba(4, 20, 38, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 25px;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: background 0.4s ease, border-color 0.4s ease;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .display-depth-title {
+      font-size: 4rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      margin: 0 0 0.5rem 0;
+      color: #38bdf8;
+      line-height: 1;
+    }
+
+    .display-zone {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+
+    .display-fact {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #e2e8f0;
+      margin-bottom: 2rem;
+      font-family: 'Inter', sans-serif;
+      min-height: 80px;
+    }
+
+    .display-fauna {
+      background: rgba(255, 255, 255, 0.04);
+      border-left: 4px solid #38bdf8;
+      padding: 1.2rem;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .display-fauna h4 {
+      margin: 0 0 0.5rem 0;
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .display-fauna p {
+      margin: 0;
+      font-size: 16px;
+      color: #fff;
+    }
+
+    .sim-bubble {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      bottom: -20px;
+      animation: floatBubble 4s infinite linear;
+    }
+
+    @keyframes floatBubble {
+      0% { transform: translateY(0) scale(1); opacity: 0; }
+      10% { opacity: 0.4; }
+      90% { opacity: 0.4; }
+      100% { transform: translateY(-450px) scale(0.5); opacity: 0; }
+    }
+
+    body.light-mode .slider-wrapper {
+      background: rgba(15, 23, 42, 0.03);
+      border-color: rgba(15, 23, 42, 0.1);
+    }
+    body.light-mode .depth-label {
+      color: #0f172a;
+    }
+    body.light-mode .info-display {
+      border-color: rgba(15, 23, 42, 0.1);
+    }
+    body.light-mode .display-zone {
+      color: rgba(15, 23, 42, 0.6);
+    }
+    body.light-mode .display-fact {
+      color: #334155;
+    }
+    body.light-mode .display-fauna {
+      background: rgba(15, 23, 42, 0.03);
+    }
+    body.light-mode .display-fauna h4 {
+      color: rgba(15, 23, 42, 0.5);
+    }
+    body.light-mode .display-fauna p {
+      color: #0f172a;
+    }
+  </style>
+</head>
+<body>
+   <div id="scroll-progress-bar"></div>
+
+<nav>
+    <a href="index.html" class="nav-logo">
+      <img src="Img/logo.png" alt="logo" style="width:32px;border-radius:50%;">
+      OCEAN <span>LIFE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="animales.html">Animales</a></li>
+      <li><a href="ecosistemas.html">Ecosistemas</a></li>
+      <li><a href="contaminacion.html">Contaminación</a></li>
+    <li><a href="inmersion.html" class="active">Inmersión</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" style="min-height:35vh; padding-top:8rem;">
+    <p class="hero-eyebrow">Laboratorio Interactivo</p>
+    <h1>🤿 Simulador de <em>Inmersión</em></h1>
+    <p class="hero-sub">Deslizá el control vertical para descender a las profundidades del océano.</p>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#041426"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="explore" style="padding-top: 1rem;">
+    <p class="section-label">Presión y Oscuridad</p>
+    
+    <div class="sim-container">
+      
+
+      <div class="slider-wrapper">
+        <span style="font-size: 12px; opacity: 0.6; margin-bottom: 10px;">SUPERFICIE</span>
+        <div class="slider-container">
+          <input type="range" id="depth-slider" class="vertical-slider" min="0" max="11000" value="0" step="10">
+        </div>
+        <span style="font-size: 12px; opacity: 0.6; margin-top: 10px;">ABISAL</span>
+        <div class="depth-label" id="slider-txt">0 m</div>
+      </div>
+
+
+      <div class="info-display" id="sub-display">
+
+        <div class="display-depth-title" id="dyn-depth">0 m</div>
+        <div class="display-zone" id="dyn-zone">Zona Epipelágica (Luz solar constante)</div>
+
+        <div class="display-fact" id="dyn-fact">
+          Estás en la superficie. Aquí se concentra la mayor cantidad de luz solar y calor, permitiendo la fotosíntesis de las algas y el fitoplancton que sostienen la vida en todo el planeta.
+        </div>
+
+
+        <div class="display-fauna">
+          <h4>Especies visibles a esta profundidad:</h4>
+          <p id="dyn-fauna">🐬 Delfín Nariz de Botella, 🐠 Pez Payaso, 🐢 Tortuga Marina, 🦈 Tiburón Blanco.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <footer>
+    <p class="footer-logo">OCEAN <span>LIFE</span></p>
+    <p class="footer-copy">© 2026 Ocean Life — Todos los derechos reservados</p>
+  </footer>
+
+
+  <script src="tema.js"></script>
+
+
+  <script>
+    const slider = document.getElementById('depth-slider');
+    const txtSlider = document.getElementById('slider-txt');
+    const dynDepth = document.getElementById('dyn-depth');
+    const dynZone = document.getElementById('dyn-zone');
+    const dynFact = document.getElementById('dyn-fact');
+    const dynFauna = document.getElementById('dyn-fauna');
+    const display = document.getElementById('sub-display');
+
+
+    const DATA_INMERSION = [
+      {
+        limit: 200,
+        zone: "Zona Epipelágica (Fótica · Luz solar constante)",
+        fact: "Franja donde penetra la luz del sol de forma directa. La presión es manejable (1 a 20 atmósferas). Aquí ocurre el 90% de la vida marina gracias a la fotosíntesis.",
+        fauna: "🐬 Delfines, 🐠 Peces de arrecife, 🐢 Tortugas, 🐋 Tiburón Ballena, 🌊 Fitoplancton.",
+        bgOscuro: "rgba(3, 105, 161, 0.6)", 
+        bgClaro: "rgba(186, 230, 253, 0.8)"
+      },
+      {
+        limit: 1000,
+        zone: "Zona Mesopelágica (Crepuscular · Luz escasa)",
+        fact: "A partir de los 200 metros la luz empieza a extinguirse rápidamente. La presión sube hasta las 100 atmósferas. Aquí ocurre la mayor migración del planeta: millones de animales suben de noche a comer a la superficie.",
+        fauna: "🪼 Medusas, 🦑 Calamares medianos, 🦈 Tiburón Martillo (en inmersión), 🐟 Pez Linterna.",
+        bgOscuro: "rgba(7, 30, 61, 0.75)",
+        bgClaro: "rgba(125, 211, 252, 0.7)"
+      },
+      {
+        limit: 4000,
+        zone: "Zona Batipelágica (Medianoche · Oscuridad Total)",
+        fact: "Franja de oscuridad absoluta. La temperatura del agua cae drásticamente hasta rondar los 2°C a 4°C. La presión llega a unas insoportables 400 atmósferas. No existen plantas aquí.",
+        fauna: "🦑 Calamar Gigante, 👹 Pez Diablo Negro (Rape abisal), 🐋 Ballenas Azules (solo en descensos récord).",
+        bgOscuro: "rgba(2, 10, 24, 0.9)", 
+        bgClaro: "rgba(56, 189, 248, 0.4)"
+      },
+      {
+        limit: 6000,
+        zone: "Zona Abisopelágica (Abisal · El fondo del océano)",
+        fact: "Inmensas llanuras de fango. La presión llega a 600 veces la de la superficie. Los animales sobreviven alimentándose de 'nieve marina' (restos orgánicos que caen del mapa superior) o mediante quimiosíntesis.",
+        fauna: "🌋 Cangrejo Yeti (en fumarolas), 🦀 Cangrejo Herradura, 🐛 Gusanos de tubo gigantes, bacterias extremófilas.",
+        bgOscuro: "rgba(1, 4, 12, 0.98)", 
+        bgClaro: "rgba(14, 165, 233, 0.25)"
+      },
+      {
+        limit: 11000,
+        zone: "Zona Hadal (Las Trincheras y Fosas Profundas)",
+        fact: "El infierno submarino. Son fosas geológicas ultra profundas como la Fosa de las Marianas. La presión aplastante supera las 1.000 atmósferas (equivalente a soportar un elefante en la punta de un dedo).",
+        fauna: "🐚 Nautilus (parientes lejanos adaptados), anfípodos gigantes transparentes, pepinos de mar hadales.",
+        bgOscuro: "rgba(0, 0, 0, 1)",
+        bgClaro: "rgba(2, 132, 199, 0.15)"
+      }
+    ];
+
+    function actualizarSimulador(metros) {
+
+      txtSlider.textContent = metros + " m";
+      dynDepth.textContent = metros + " m";
+
+
+      const datosActuales = DATA_INMERSION.find(rango => metros <= rango.limit) || DATA_INMERSION[DATA_INMERSION.length - 1];
+
+
+      dynZone.textContent = datosActuales.zone;
+      dynFact.textContent = datosActuales.fact;
+      dynFauna.textContent = datosActuales.fauna;
+
+     
+      const esModoClaro = document.body.classList.contains('light-mode');
+      display.style.backgroundColor = esModoClaro ? datosActuales.bgClaro : datosActuales.bgOscuro;
+    }
+
+
+    slider.addEventListener('input', (e) => {
+      actualizarSimulador(parseInt(e.target.value));
+    });
+
+  
+    setInterval(() => {
+      const bubble = document.createElement('div');
+      bubble.className = 'sim-bubble';
+      const size = Math.random() * 8 + 4;
+      bubble.style.width = size + 'px';
+      bubble.style.height = size + 'px';
+      bubble.style.left = Math.random() * 90 + 5 + '%';
+      bubble.style.animationDuration = (Math.random() * 2 + 3) + 's';
+      
+      display.appendChild(bubble);
+      
+
+      setTimeout(() => { bubble.remove(); }, 5000);
+    }, 600);
+
+
+    actualizarSimulador(0);
+
+   
+    document.addEventListener('click', (e) => {
+      if (e.target.id === 'theme-toggle') {
+        setTimeout(() => actualizarSimulador(parseInt(slider.value)), 50);
+      }
+    });
+  </script>
+  <script src="efecto.js"></script>
+<button id="btn-back-to-top" title="Volver arriba" aria-label="Volver arriba">↑</button>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ecosistemas - Ocean Life</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=700;900&family=Inter:wght=300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="Css/estilos.css"/>
+  <style>
+    .eco-filtros {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .eco-tab {
+      padding: 6px 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: transparent;
+      color: rgba(255,255,255,0.6);
+      font-size: 13px;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .eco-tab.active,
+    .eco-tab:hover {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border-color: rgba(255,255,255,0.4);
+    }
+    .eco-count {
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 1.5rem;
+    }
+    .card-zona {
+      font-size: 10px;
+      opacity: .45;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin: 0 0 4px;
+    }
+    .modal-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+    <div id="scroll-progress-bar"></div>
+
+<nav>
+    <a href="index.html" class="nav-logo">
+      <img src="Img/logo.png" alt="logo" style="width:32px;border-radius:50%;">
+      OCEAN <span>LIFE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="animales.html">Animales</a></li>
+     <li><a href="ecosistemas.html" class="active">Ecosistemas</a></li>
+      <li><a href="contaminacion.html">Contaminación</a></li>
+      <li><a href="inmersion.html">Inmersión</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" style="min-height:40vh; padding-top:8rem;">
+    <p class="hero-eyebrow">El mundo bajo el mar</p>
+    <h1>🌍 Ecosistemas <em>Marinos</em></h1>
+    <p class="hero-sub">Explorá los distintos ambientes que existen bajo el mar.</p>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#041426"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="explore">
+    <p class="section-label">Ambientes oceánicos</p>
+    <h2>Mundos bajo el agua</h2>
+    <p class="explore-sub">Cada ecosistema tiene su propia vida y sus propios secretos</p>
+
+    <div class="eco-filtros">
+      <button class="eco-tab active" data-cat="todos">Todos</button>
+      <button class="eco-tab" data-cat="tropicales">Tropicales</button>
+      <button class="eco-tab" data-cat="profundas">Profundas</button>
+      <button class="eco-tab" data-cat="costeras">Costeras</button>
+      <button class="eco-tab" data-cat="polares">Polares</button>
+      <button class="eco-tab" data-cat="abiertas">Mar abierto</button>
+    </div>
+
+    <p class="eco-count" id="eco-count">24 ecosistemas</p>
+    <div class="cards" id="eco-grid"></div>
+  </section>
+
+  <dialog class="modal-content" id="ecoDialog" aria-labelledby="dialogTitle" aria-describedby="dialogDesc">
+    <button class="modal-close" id="modalClose">&times;</button>
+    <img src="" alt="" class="modal-img" id="modalImg">
+    <div class="modal-title-container" style="padding: 1rem 1rem 0 1rem;">
+      <span class="modal-icon" id="modalIcon"></span>
+      <h3 class="modal-title" id="dialogTitle"></h3>
+    </div>
+    <p class="card-zona" id="modalZona" style="padding: 0 1rem; opacity: 0.7; font-size: 12px;"></p>
+    <p class="modal-text" id="dialogDesc" style="padding: 0 1rem 1rem 1rem;"></p>
+  </dialog>
+
+  <footer>
+    <p class="footer-logo">OCEAN <span>LIFE</span></p>
+    <p class="footer-copy">© 2026 Ocean Life — Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    const ECOS = [
+      {
+        icon: "🪸", name: "Arrecife de Coral", zona: "Zona fótica · 0–40 m", cat: "tropicales", img: "Img/arrecife_de_coral.jpeg",
+        desc: "Cubren menos del 1% del océano pero albergan el 25% de todas las especies marinas. La simbiosis entre el coral y las algas zooxantelas es clave para su supervivencia. El blanqueamiento por calor es su mayor amenaza actual."
+      },
+      {
+        icon: "🌊", name: "Océano Abierto", zona: "Zona pelágica · 0–200 m", cat: "abiertas", img: "Img/oceano abierto.jfif",
+        desc: "Cubre el 71% del planeta. El fitoplancton es la base de toda la cadena alimentaria. Ballenas azules, tiburones blancos y atunes de aleta azul recorren miles de kilómetros en estas aguas."
+      },
+      {
+        icon: "🌑", name: "Zona Abismal", zona: "Abisopelágica · 4.000–6.000 m", cat: "profundas", img: "Img/zona abisal.jfif",
+        desc: "Presión de 600 atmósferas, oscuridad total y 2°C. La nieve marina (materia orgánica que cae desde la superficie) es el sustento principal. Peces bioluminiscentes y bacterias extremófilas la habitan."
+      },
+      {
+        icon: "🌿", name: "Praderas de Posidonia", zona: "Costera · 0–40 m", cat: "costeras", img: "Img/zona posidonia.jfif",
+        desc: "Planta marina con raíces, flores y frutos. Produce 14 litros de oxígeno por m² al día y sirve de guardería para el 75% de los peces mediterráneos. Indicadora de agua limpia y sana."
+      },
+      {
+        icon: "🧊", name: "Océano Polar Ártico", zona: "Polar · Ártico", cat: "polares", img: "Img/oceano polar artico.jfif",
+        desc: "El hielo marino sostiene algas que alimentan al krill, que a su vez nutre a focas, osos polares y ballenas. El Ártico se calienta el doble de rápido que el resto del planeta."
+      },
+      {
+        icon: "🐧", name: "Océano Antártico", zona: "Polar · Antártida", cat: "polares", img: "Img/oceano antartico.jfif",
+        desc: "El más aislado y ventoso del planeta. Hogar del 90% de los pingüinos del mundo, leopardos marinos y ballenas jorobadas. Su corriente circumpolar regula el clima de todo el globo."
+      },
+      {
+        icon: "🏖️", name: "Zona Intermareal", zona: "Litoral · entre mareas", cat: "costeras", img: "Img/zona intermareal.jfif",
+        desc: "Entre la marea alta y la baja: uno de los ambientes más extremos. Lapas, anémonas y cangrejos soportan exposición al aire, cambios de temperatura y salinidad extrema dos veces al día."
+      },
+      {
+        icon: "🌱", name: "Manglar", zona: "Estuarios tropicales", cat: ["costeras", "tropicales"], img: "Img/manglar.jfif",
+        desc: "Sus raíces aéreas filtran el agua y protegen costas de huracanes. Criadero del 75% de los peces tropicales comerciales. Almacenan 4× más carbono que bosques terrestres del mismo tamaño."
+      },
+      {
+        icon: "🌋", name: "Fumarolas Hidrotermales", zona: "Dorsales oceánicas · 2.000–4.000 m", cat: "profundas", img: "Img/fumarolas hidrotermales.jfif",
+        desc: "Chimeneas que expulsan agua a 400°C. La vida aquí usa quimiosíntesis en vez de fotosíntesis. Tubo gusanos de 2 m, cangrejos yeti y camarones ciegos sobreviven sin luz solar."
+      },
+      {
+        icon: "🌾", name: "Bosques de Kelp", zona: "Templada · 0–30 m", cat: "costeras", img: "Img/bosques de kelp.jfif",
+        desc: "Algas gigantes que crecen 60 cm por día y alcanzan 45 m de altura. Cada alga es un edificio de múltiples pisos con nutrias, leones marinos y miles de invertebrados en distintos niveles."
+      },
+      {
+        icon: "🫧", name: "Zona Mesopelágica", zona: "Crepuscular · 200–1.000 m", cat: "profundas", img: "Img/zona mesopologica.jfif",
+        desc: "Cada noche, millones de peces linterna y calamares suben a alimentarse y vuelven al amanecer: la mayor migración del planeta. Esta zona captura enormes cantidades de carbono diariamente."
+      },
+      {
+        icon: "🐚", name: "Estuario", zona: "Transición · desembocaduras", cat: "costeras", img: "Img/estuario.jfif",
+        desc: "Donde el río entrega su agua al mar. La mezcla crea la zona más productiva del planeta por km². Funciona como vivero, filtro de contaminantes y amortiguador de inundaciones."
+      },
+      {
+        icon: "❄️", name: "Bajo el Hielo Ártico", zona: "Polar · cara inferior de la banquisa", cat: "polares", img: "Img/Bajo el Hielo Ártico.jfif",
+        desc: "La cara inferior del hielo está cubierta de algas. En primavera explotan en una floración masiva que alimenta al krill durante meses. Sin estas algas toda la vida polar colapsa."
+      },
+      {
+        icon: "🐊", name: "Marisma Salada", zona: "Costera · entre mareas altas", cat: "costeras", img: "Img/Marisma Salada.jfif",
+        desc: "Llanuras inundadas periódicamente por el mar, cubiertas de plantas halófilas. Refugio de aves migratorias y cría de crustáceos. Filtran sedimentos y nitrógeno antes de que lleguen al mar abierto."
+      },
+      {
+        icon: "🐠", name: "Laguna Tropical", zona: "Zona fótica · tropicales", cat: "tropicales", img: "Img/Laguna Tropical.jfif",
+        desc: "Cuerpos de agua someros separados del mar abierto por arrecifes o barreras de arena. Aguas cálidas, claras y tranquilas donde proliferan tortugas, rayas y peces tropicales de colores."
+      },
+      {
+        icon: "🦈", name: "Monte Submarino", zona: "Pelágica · cima a 200–2.000 m", cat: "abiertas", img: "Img/Monte Submarino.jfif",
+        desc: "Volcanes extintos que no llegan a la superficie. Sus cimas concentran corrientes ricas en nutrientes que atraen atunes, tiburones, ballenas y una biodiversidad sorprendente lejos de la costa."
+      },
+      {
+        icon: "🪼", name: "Zona Hadal (Fosas)", zona: "Hadopelágica · +6.000 m", cat: "profundas", img: "Img/Zona Hadal (Fosas).jfif",
+        desc: "Las fosas oceánicas como la Mariana superan los 11.000 m. La presión equivale a 1.100 kg sobre cada cm². Anfípodos gigantes, pepinos de mar y bacterias únicas viven en el punto más profundo de la Tierra."
+      },
+      {
+        icon: "🌫️", name: "Zona de Mínimo Oxígeno", zona: "Mesopelágica · 200–1.000 m", cat: "abiertas", img: "Img/Zona de Mínimo Oxígeno.jfif",
+        desc: "Capas donde el oxígeno es casi nulo por la destrucción bacteriana. Crean barreras que concentran zooplancton y separan comunidades. Están expandiéndose con el calentamiento global."
+      },
+      {
+        icon: "🐋", name: "Bahía de Surgencia", zona: "Costera · corrientes frías", cat: "costeras", img: "Img/Bahía de Surgencia.jfif",
+        desc: "Zonas donde el viento empuja el agua superficial y sube agua fría y nutritiva del fondo. Son los caladeros más ricos del planeta: Perú, Namibia y California producen el 20% de la pesca mundial."
+      },
+      {
+        icon: "🦀", name: "Fondos de Fango", zona: "Bentónica · 200–4.000 m", cat: "profundas", img: "Img/Fondos de Fango.jfif",
+        desc: "Llanuras abisales cubiertas de sedimento suave. Son los ambientes más extensos de la Tierra. Gusanos poliquetos, estrellas de mar frágiles y erizos irregulares cavan y filtran el sedimento sin descanso."
+      },
+      {
+        icon: "🐙", name: "Arrecife Rocoso", zona: "Costera · 0–50 m", cat: "costeras", img: "Img/Arrecife Rocoso.jfif",
+        desc: "Formaciones de roca dura cubiertas de algas, esponjas y corales blandos. Refugio de pulpos, morenas y estrellas de mar. Más resistentes al cambio climático que los arrecifes de coral pero igual de ricos en vida."
+      },
+      {
+        icon: "🌅", name: "Zona Nerítica Tropical", zona: "Tropical · 0–200 m", cat: "tropicales", img: "Img/Zona Nerítica Tropical.jfif",
+        desc: "Aguas someras sobre la plataforma continental en zonas tropicales. Alta temperatura y luz solar constante generan una explosión de vida: bancos de peces de colores, delfines y tortugas verdes."
+      },
+      {
+        icon: "🌐", name: "Mar de Sargazos", zona: "Subtropical · 0–200 m", cat: "abiertas", img: "Img/Mar de Sargazos.jfif",
+        desc: "El único mar sin costas, delimitado por corrientes. Sus masas flotantes de alga sargazo son hogar de anguilas europeas, caballitos de mar y peces voladores. Las tortugas marinas lo usan como guardería."
+      },
+      {
+        icon: "🌬️", name: "Plataforma Continental", zona: "Nerítica · 0–200 m", cat: "costeras", img: "Img/Plataforma Continental.jfif",
+        desc: "La extensión submarina de los continentes, con fondo relativamente plano hasta los 200 m. Concentra el 90% de la pesca mundial y la mayor diversidad de vida marina bentónica gracias a su luz y nutrientes."
+      }
+    ];
+
+    function filterEcos(cat) {
+      return cat === "todos" ? ECOS : ECOS.filter(e => Array.isArray(e.cat) ? e.cat.includes(cat) : e.cat === cat);
+    }
+
+    function renderCards(list) {
+      return list.map(e => `
+        <div class="card" data-title="${e.name}" data-icon="${e.icon}" data-zona="${e.zona}" data-desc="${e.desc}" data-img="${e.img}">
+          <div class="card-icon">${e.icon}</div>
+          <p class="card-zona">${e.zona}</p>
+          <h3>${e.name}</h3>
+          <p>${e.desc}</p>
+        </div>
+      `).join("");
+    }
+
+    const grid = document.getElementById("eco-grid");
+    const countEl = document.getElementById("eco-count");
+    const tabBtns = document.querySelectorAll(".eco-tab");
+
+    const dialog = document.getElementById('ecoDialog');
+    const closeBtn = document.getElementById('modalClose');
+    const modalImg = document.getElementById('modalImg');
+    const modalIcon = document.getElementById('modalIcon');
+    const dialogTitle = document.getElementById('dialogTitle');
+    const modalZona = document.getElementById('modalZona');
+    const dialogDesc = document.getElementById('dialogDesc');
+
+    let lastFocused = null;
+
+    function attachCardEvents() {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        card.addEventListener('click', () => {
+          lastFocused = card;
+          modalImg.src = card.dataset.img;
+          modalImg.alt = card.dataset.title;
+          modalIcon.textContent = card.dataset.icon;
+          dialogTitle.textContent = card.dataset.title;
+          modalZona.textContent = card.dataset.zona;
+          dialogDesc.textContent = card.dataset.desc;
+          dialog.showModal();
+          closeBtn.focus({ preventScroll: true });
+        });
+      });
+    }
+
+    function update(cat) {
+      const list = filterEcos(cat);
+      grid.innerHTML = renderCards(list);
+      countEl.textContent = list.length + " ecosistemas";
+      attachCardEvents();
+    }
+
+    update("todos");
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        tabBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        update(btn.dataset.cat);
+      });
+    });
+
+    function closeDialog() {
+      dialog.close();
+      if (lastFocused) lastFocused.focus();
+    }
+
+    closeBtn.addEventListener('click', closeDialog);
+
+    dialog.addEventListener('click', (e) => {
+      const rect = dialog.getBoundingClientRect();
+      const inside = (
+        rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX && e.clientX <= rect.left + rect.width
+      );
+      if (!inside) closeDialog();
+    });
+  </script>
+<script src="efecto.js"></script>
+<script>
+  window.addEventListener('scroll', () => {
+    const progressBar = document.getElementById('scroll-progress-bar');
+    if (progressBar) {
+      const winScroll = window.pageYOffset || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+      progressBar.style.width = scrolled + '%';
+    }
+  });
+</script>
+<button id="btn-back-to-top" title="Volver arriba" aria-label="Volver arriba">↑</button>
+</body>
+</html>

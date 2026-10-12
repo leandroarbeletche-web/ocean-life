@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ocean Life - Sobre Nosotros</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="Css/estilos.css"/>
+  <style>
+    .pagina-nosotros {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .titulo-principal {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .titulo-principal em {
+      font-style: normal;
+      color: var(--cyan);
+    }
+
+    .subtitulo-principal {
+      text-align: center;
+      color: var(--muted);
+      font-size: 1.05rem;
+      font-weight: 300;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      line-height: 1.6;
+    }
+
+    .nosotros-contenido-card {
+      background: linear-gradient(180deg, rgba(7, 48, 78, 0.75), rgba(5, 34, 56, 0.85));
+      border: 1px solid rgba(123, 231, 255, 0.18);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+    }
+
+    .nosotros-texto p {
+      color: var(--light);
+      font-size: 1.02rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    .badge-institucional {
+      display: inline-block;
+      color: var(--cyan);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      background: rgba(0, 200, 224, 0.12);
+      border: 1px solid rgba(0, 200, 224, 0.3);
+      padding: 5px 14px;
+      border-radius: 20px;
+    }
+
+    .firma-equipo {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(123, 231, 255, 0.2);
+      text-align: center;
+    }
+
+    .firma-equipo p {
+      color: var(--cyan);
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .nosotros-contenido-card {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+ <div id="scroll-progress-bar"></div>
+<nav>
+    <a href="index.html" class="nav-logo">
+      <img src="Img/logo.png" alt="logo" style="width:32px;border-radius:50%;">
+      OCEAN <span>LIFE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="animales.html">Animales</a></li>
+      <li><a href="ecosistemas.html">Ecosistemas</a></li>
+      <li><a href="contaminacion.html">Contaminación</a></li>
+      <li><a href="inmersion.html">Inmersión</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+     <li><a href="nosotros.html" class="active">Nosotros</a></li>
+    </ul>
+  </nav>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="pagina-nosotros">
+    
+    <p class="section-label" style="text-align: center;">El equipo detrás del proyecto</p>
+    <h1 class="titulo-principal">Sobre <em>Nosotros</em></h1>
+    <p class="subtitulo-principal">
+      Conocé cómo tres amigos transformaron un trabajo práctico en una experiencia interactiva sobre el océano.
+    </p>
+
+    <div class="nosotros-contenido-card">
+      <span class="badge-institucional">6to Año - Técnico en Informática (Juan XXIII)</span>
+      
+      <div class="nosotros-texto">
+        <p>
+          Somos un grupo de tres amigos de 17 años cada uno, actualmente cursando sexto año en la secundaria Juan XXIII, en la modalidad técnica de Informática. A la hora de encarar este proyecto no sabíamos bien qué temática elegir, ya que quizás entre los tres no compartimos exactamente los mismos gustos o intereses, pero decidimos inclinarnos por un tema del que no se habla lo suficiente en la actualidad y que tiene una importancia vital: el océano.
+        </p>
+        <p>
+          A partir de ese momento y con la explicación de los profesores clase tras clase, empezamos a armar nuestra página web sobre el océano. La fuimos armando a partir de nuestro gusto propio, eligiendo lo que a nosotros nos parecía que iba mejor para la página y lo que más nos copaba hacer.
+        </p>
+        <p>
+          Entre programar, buscar información que valga la pena y meterle onda al diseño, fuimos dándole forma a este espacio para que no sea solo un trabajo más del colegio, sino algo que nos divierta armar y que realmente llame la atención. Queremos que los que entren se encuentren con un lugar copado, donde puedan conocer más sobre la vida marina, aprender datos locos de los animales y entender un poco por qué es tan clave cuidar nuestros mares, todo contado a nuestra manera y sin vueltas.
+        </p>
+      </div>
+
+      <div class="firma-equipo">
+        <p>Hecho por Arbeletche Leandro &bull; Heredia Joaquin &bull; Meraviglia Benicio</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-logo">OCEAN <span>LIFE</span></p>
+    <p class="footer-copy">© 2026 Ocean Life – Todos los derechos reservados</p>
+  </footer>
+  <script src="efecto.js"></script>
+<button id="btn-back-to-top" title="Volver arriba" aria-label="Volver arriba">↑</button>
+</body>
+</html>

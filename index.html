@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ocean Life</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="Css/estilos.css"/>
+</head>
+<body>
+  <div id="scroll-progress-bar"></div>
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="Img/logo.png" alt="logo" style="width:32px;border-radius:50%;">
+      OCEAN <span>LIFE</span>
+    </a>
+    <ul class="nav-links">
+     <li><a href="index.html" class="active">Inicio</a></li>
+      <li><a href="animales.html">Animales</a></li>
+      <li><a href="ecosistemas.html">Ecosistemas</a></li>
+      <li><a href="contaminacion.html">Contaminación</a></li>
+      <li><a href="inmersion.html">Inmersión</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="bubbles">
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+    </div>
+    <p class="hero-eyebrow">Explorá el mundo submarino</p>
+    <h1>Bienvenido a<br><em>Ocean Life</em></h1>
+    <p class="hero-sub">Descubrí las criaturas más fascinantes del océano, sus ecosistemas y los secretos del mundo marino.</p>
+    <a href="animales.html" class="btn-primary">Explorar ahora →</a>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#041426"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="explore">
+    <p class="section-label">¿Qué querés explorar?</p>
+    <h2>El océano te espera</h2>
+    <p class="explore-sub">Elegí por dónde empezar tu aventura marina</p>
+    <div class="cards">
+      <a href="animales.html" class="card">
+        <div class="card-icon">🐠</div>
+        <h3>Animales</h3>
+        <p>Conocé las especies más increíbles del océano, desde tiburones hasta pulpos.</p>
+        <span class="card-link">Ver más →</span>
+      </a>
+      <a href="ecosistemas.html" class="card">
+        <div class="card-icon">🪸</div>
+        <h3>Ecosistemas</h3>
+        <p>Arrecifes de coral, océano profundo y zonas costeras únicas.</p>
+        <span class="card-link">Ver más →</span>
+      </a>
+      <a href="contaminacion.html" class="card" style="border-top: 3px solid var(--cyan);">
+        <div class="card-icon">🌊</div>
+        <h3>Contaminación</h3>
+        <p>El impacto humano en los mares y cómo afecta a nuestra propia vida.</p>
+        <span class="card-link">Ver más →</span>
+      </a>
+      <a href="juegos.html" class="card">
+        <div class="card-icon">🎮</div>
+        <h3>Juegos</h3>
+        <p>Actividades y juegos interactivos para aprender jugando.</p>
+        <span class="card-link">Ver más →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat">
+      <div class="stat-number">230k+</div>
+      <div class="stat-label">Especies marinas</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">71%</div>
+      <div class="stat-label">De la Tierra es océano</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">11km</div>
+      <div class="stat-label">Profundidad máxima</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">80%</div>
+      <div class="stat-label">Aún sin explorar</div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="footer-logo">OCEAN <span>LIFE</span></p>
+    <p class="footer-copy">© 2026 Ocean Life – Todos los derechos reservados</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="efecto.js"></script>
+  <button id="btn-back-to-top" title="Volver arriba" aria-label="Volver arriba">↑</button>
+</body>
+</html>
+

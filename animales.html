@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Animales - Ocean Life</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=700;900&family=Inter:wght=300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="Css/estilos.css"/>
+  <style>
+    .search-container {
+      max-width: 500px;
+      margin: 0 auto 2.5rem auto;
+      padding: 0 1rem;
+    }
+    .search-input {
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 30px;
+      outline: none;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+    }
+    .search-input:focus {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #3b82f6; 
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+    }
+    .search-input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+    .modal-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="scroll-progress-bar"></div>
+<nav>
+    <a href="index.html" class="nav-logo">
+      <img src="Img/logo.png" alt="logo" style="width:32px;border-radius:50%;">
+      OCEAN <span>LIFE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="animales.html" class="active">Animales</a></li>
+      <li><a href="ecosistemas.html">Ecosistemas</a></li>
+      <li><a href="contaminacion.html">Contaminación</a></li>
+      <li><a href="inmersion.html">Inmersión</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" style="min-height:40vh; padding-top:8rem;">
+    <p class="hero-eyebrow">Fauna oceánica</p>
+    <h1>🦈 Animales <em>Marinos</em></h1>
+    <p class="hero-sub">Haz clic en cada tarjeta para conocer más sobre la especie.</p>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#041426"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="explore">
+    <p class="section-label">Exploración marina</p>
+    <h2>Criaturas del mar</h2>
+    <p class="explore-sub">Cada tarjeta muestra una descripción breve; el detalle completo se abre al tocarla.</p>
+
+    <div class="search-container">
+      <input type="text" id="buscador" class="search-input" placeholder="🔍 Buscar animal por nombre...">
+    </div>
+
+    <div class="cards" id="cards-container">
+
+      <div class="card" data-title="Tiburón Blanco" data-icon="🦈" data-img="Img/tiburon_blanco.jpeg" data-short="El pez depredador más grande del mundo." data-habitat="Océanos templados y cálidos." data-features="Puede medir hasta 6 metros y pesa más de 2.000 kg. Tiene varias hileras de dientes que se reemplazan continuamente." data-food="Peces, focas y otros animales marinos." data-extra="A pesar de su fama, los ataques a humanos son muy raros.">
+        <div class="card-icon">🦈</div><h3>Tiburón Blanco</h3><p>El pez depredador más grande del mundo. Puede medir hasta 6 metros y pesar más de 2.000 kg.</p>
+      </div>
+
+      <div class="card" data-title="Pulpo" data-icon="🐙" data-img="Img/pulpo.jpeg" data-short="Uno de los animales más inteligentes del mar." data-habitat="Arrecifes, fondos marinos y cuevas submarinas." data-features="Tiene 8 brazos, cambia de color y posee tres corazones." data-food="Crustáceos, moluscos y peces pequeños." data-extra="Puede abrir frascos, resolver laberintos y usar herramientas.">
+        <div class="card-icon">🐙</div><h3>Pulpo</h3><p>Uno de los animales más inteligentes del mar. Tiene 8 tentáculos, puede cambiar de color y tiene tres corazones.</p>
+      </div>
+
+      <div class="card" data-title="Delfín" data-icon="🐬" data-img="Img/delfin.jpeg" data-short="Mamíferos marinos sociables e inteligentes." data-habitat="Aguas cálidas y templadas de los océanos." data-features="Se comunican con sonidos y viven en grupos llamados manadas." data-food="Peces y calamares." data-extra="Usan ecolocalización para navegar y cazar.">
+        <div class="card-icon">🐬</div><h3>Delfín</h3><p>Mamíferos marinos muy sociables e inteligentes. Se comunican mediante sonidos y viven en manadas.</p>
+      </div>
+
+      <div class="card" data-title="Ballena Azul" data-icon="🐋" data-img="Img/ballena_jorobada.jpeg" data-short="El animal más grande que ha existido en la Tierra." data-habitat="Océanos de todo el mundo." data-features="Puede medir hasta 30 metros y pesar unas 180 toneladas." data-food="Krill." data-extra="Sus cantos pueden escucharse a grandes distancias.">
+        <div class="card-icon">🐋</div><h3>Ballena Azul</h3><p>El animal más grande que ha existido. Puede medir hasta 30 metros y pesar 180 toneladas.</p>
+      </div>
+
+      <div class="card" data-title="Calamar Gigante" data-icon="🦑" data-img="Img/calamar_gigante.jfif" data-short="Vive en las profundidades del océano." data-habitat="Zonas abisales profundas y oscuras." data-features="Puede medir hasta 13 metros y tiene ojos enormes." data-food="Peces y otros animales marinos." data-extra="Es una de las criaturas más misteriosas del océano.">
+        <div class="card-icon">🦑</div><h3>Calamar Gigante</h3><p>Vive en las profundidades del océano. Puede llegar a medir 13 metros y tiene los ojos más grandes del reino animal.</p>
+      </div>
+
+      <div class="card" data-title="Pez Payaso" data-icon="🐠" data-img="Img/pez_payaso.jfif" data-short="Vive entre anémonas en una relación simbiótica." data-habitat="Arrecifes de coral del Indo-Pacífico." data-features="Posee una mucosidad que lo protege de las picaduras de la anémona." data-food="Pequeños invertebrados y restos orgánicos." data-extra="Todos nacen machos y pueden cambiar de sexo si hace falta.">
+        <div class="card-icon">🐠</div><h3>Pez Payaso</h3><p>Famoso por Buscando a Nemo, vive entre las anémonas en una relación simbiótica única.</p>
+      </div>
+
+      <div class="card" data-title="Tortuga Marina" data-icon="🐢" data-img="Img/tortugas-marinas.jpg" data-short="Existe desde hace millones de años." data-habitat="Océanos tropicales y subtropicales." data-features="Puede vivir más de 100 años y recorrer grandes distancias." data-food="Algas, medusas, esponjas o crustáceos, según la especie." data-extra="Las hembras vuelven a la playa donde nacieron para poner sus huevos.">
+        <div class="card-icon">🐢</div><h3>Tortuga Marina</h3><p>Existen desde hace más de 100 millones de años. Pueden vivir hasta 150 años y recorrer miles de kilómetros.</p>
+      </div>
+
+      <div class="card" data-title="Foca" data-icon="🦭" data-img="Img/foca.jfif" data-short="Mamífero marino ágil en agua y tierra." data-habitat="Costas frías y zonas polares." data-features="Usa sus bigotes para detectar movimientos y localizar presas." data-food="Peces y crustáceos." data-extra="Es una excelente buceadora y puede reducir su ritmo cardíaco bajo el agua.">
+        <div class="card-icon">🦭</div><h3>Foca</h3><p>Mamífero marino ágil tanto en el agua como en tierra. Usa sus bigotes para detectar movimientos y localizar presas.</p>
+      </div>
+
+      <div class="card" data-title="Medusa" data-icon="🪼" data-img="Img/medusa.jfif" data-short="No tiene cerebro, corazón ni sangre." data-habitat="Todos los océanos del mundo." data-features="Su cuerpo es gelatinoso y está compuesto en gran parte por agua." data-food="Plancton y pequeños organismos." data-extra="Algunas especies pueden revertir su ciclo de vida.">
+        <div class="card-icon">🪼</div><h3>Medusa</h3><p>No tienen cerebro, corazón ni sangre. Existen hace más de 500 millones de años y algunas especies son inmortales.</p>
+      </div>
+
+      <div class="card" data-title="Camarón Mantis" data-icon="🦐" data-img="Img/camaron mantis.jfif" data-short="Tiene uno de los golpes más rápidos del reino animal." data-habitat="Aguas tropicales y arrecifes." data-features="Posee ojos con visión de colores muy avanzada." data-food="Crustáceos, moluscos y peces pequeños." data-extra="Su golpe es tan fuerte que puede romper caparazones y vidrio de acuarios.">
+        <div class="card-icon">🦐</div><h3>Camarón Mantis</h3><p>Tiene el golpe más rápido del reino animal. Sus ojos pueden ver 16 tipos de receptores de color.</p>
+      </div>
+
+      <div class="card" data-title="Pez Globo" data-icon="🐡" data-img="Img/pez_globo.jfif" data-short="Se infla para defenderse." data-habitat="Aguas tropicales y subtropicales." data-features="Posee tetrodotoxina, un veneno muy potente." data-food="Moluscos y pequeños invertebrados." data-extra="En Japón se prepara en el plato llamado fugu.">
+        <div class="card-icon">🐡</div><h3>Pez Globo</h3><p>Cuando se siente amenazado se infla como una pelota. Contiene tetrodotoxina, uno de los venenos más potentes del mundo.</p>
+      </div>
+
+      <div class="card" data-title="Cangrejo Herradura" data-icon="🦀" data-img="Img/cangrejo_herradura.jfif" data-short="Es uno de los animales más antiguos del planeta." data-habitat="Fondos arenosos y costas poco profundas." data-features="Tiene sangre azul y aspecto de fósil viviente." data-food="Gusanos, moluscos y pequeños animales." data-extra="Su sangre se usa en medicina para detectar toxinas bacterianas.">
+        <div class="card-icon">🦀</div><h3>Cangrejo Herradura</h3><p>Es uno de los animales más antiguos del planeta, existe hace 450 millones de años.</p>
+      </div>
+
+      <div class="card" data-title="Orca" data-icon="🐳" data-img="Img/orca.jfif" data-short="El depredador más poderoso del océano." data-habitat="Océanos fríos y templados." data-features="Vive en grupos familiares y tiene gran inteligencia." data-food="Peces, focas, pingüinos y otros mamíferos marinos." data-extra="Es una especie muy social y organizada.">
+        <div class="card-icon">🐳</div><h3>Orca</h3><p>La orca es el depredador más poderoso del océano. Vive en grupos familiares y tiene una gran inteligencia.</p>
+      </div>
+
+      <div class="card" data-title="Langosta" data-icon="🦞" data-img="Img/langosta.jfif" data-short="Puede vivir muchísimos años." data-habitat="Fondos marinos rocosos." data-features="Crecen durante toda su vida y mudan su caparazón." data-food="Moluscos, peces y restos orgánicos." data-extra="Algunas pueden vivir más de 100 años.">
+        <div class="card-icon">🦞</div><h3>Langosta</h3><p>A diferencia de la mayoría de los animales, las langostas no envejecen biológicamente.</p>
+      </div>
+
+      <div class="card" data-title="Pez Linterna" data-icon="🐟" data-img="Img/pez_linterna.jfif" data-short="Produce luz en las profundidades." data-habitat="Zonas abisales oscuras." data-features="Tiene fotóforos que emiten bioluminiscencia." data-food="Pequeños peces y crustáceos." data-extra="Usa su luz para atraer presas.">
+        <div class="card-icon">🐟</div><h3>Pez Linterna</h3><p>Vive en las profundidades oscuras del océano y produce su propia luz mediante bioluminiscencia.</p>
+      </div>
+
+      <div class="card" data-title="Manta Raya" data-icon="🦋" data-img="Img/mantaraya.jfif" data-short="Es pacífica y elegante." data-habitat="Aguas tropicales y subtropicales." data-features="Puede medir hasta 7 metros de ancho." data-food="Plancton." data-extra="Nada con movimientos muy suaves y amplios.">
+        <div class="card-icon">🦋</div><h3>Manta Raya</h3><p>La manta raya gigante puede medir hasta 7 metros de ancho y se alimenta de plancton.</p>
+      </div>
+
+      <div class="card" data-title="Pez León" data-icon="🦁" data-img="Img/pez leon.webp" data-short="Hermoso pero muy peligroso y venenoso." data-habitat="Arrecifes de coral del Indopacífico." data-features="Tiene espinas flotantes cargadas con poderosas toxinas." data-food="Peces pequeños y crustáceos." data-extra="Es una especie invasora problemática en el Mar Caribe.">
+        <div class="card-icon">🦁</div><h3>Pez León</h3><p>Llamativo y elegante, pero posee espinas dorsales sumamente venenosas.</p>
+      </div>
+
+      <div class="card" data-title="Caballito de Mar" data-icon="🐎" data-img="Img/caballito de mar.jpg" data-short="El único animal donde el padre da a luz." data-habitat="Aguas poco profundas y praderas marinas." data-features="Tiene cola prensil para sujetarse y ojos independientes." data-food="Pequeños crustáceos flotantes." data-extra="La hembra deposita los huevos en la bolsa del macho.">
+        <div class="card-icon">🐎</div><h3>Caballito de Mar</h3><p>Una criatura fascinante donde el macho gesta y pare a las crías.</p>
+      </div>
+
+      <div class="card" data-title="Tiburón Martillo" data-icon="🔨" data-img="Img/tiburon martillo.jfif" data-short="Su cabeza le da una visión de 360 grados." data-habitat="Aguas templadas y tropicales del mundo." data-features="Cabeza expandida en forma de T con ojos en los extremos." data-food="Rayas, calamares y otros peces." data-extra="Usa su extraña cabeza para rastrear campos eléctricos.">
+        <div class="card-icon">🔨</div><h3>Tiburón Martillo</h3><p>Su cabeza plana le permite giros ultra rápidos y un rastreo perfecto.</p>
+      </div>
+
+      <div class="card" data-title="Narval" data-icon="🦄" data-img="Img/narval.jfif" data-short="El unicornio de los océanos árticos." data-habitat="Aguas frías del Océano Ártico." data-features="Los machos desarrollan un colmillo largo y retorcido." data-food="Bacalao, calamares y camarones." data-extra="Su cuerno es en realidad un diente lleno de nervios.">
+        <div class="card-icon">🦄</div><h3>Narval</h3><p>Famoso por su colmillo helicoidal que llega a medir hasta 3 metros.</p>
+      </div>
+
+      <div class="card" data-title="Manatí" data-icon="🐮" data-img="Img/manati.jfif" data-short="Conocidos tiernamente como vacas marinas." data-habitat="Ríos lentos, estuarios y costas tropicales." data-features="Cuerpo robusto, piel grisácea y una cola en forma de cuchara." data-food="Hierbas marinas y plantas acuáticas." data-extra="Pasan hasta ocho horas al día comiendo vegetación.">
+        <div class="card-icon">🐮</div><h3>Manatí</h3><p>Mamíferos herbívoros gigantes, sumamente pacíficos y lentos.</p>
+      </div>
+
+      <div class="card" data-title="Estrella de Mar" data-icon="⭐" data-img="Img/estrella de mar.jfif" data-short="Puede regenerar sus brazos perdidos." data-habitat="Fondos marinos de todos los océanos." data-features="Carecen de sangre y usan agua marina para bombear nutrientes." data-food="Moluscos como almejas y mejillones." data-extra="Si pierde un brazo, le crece uno nuevo en meses.">
+        <div class="card-icon">⭐</div><h3>Estrella de Mar</h3><p>No tienen cerebro pero sí un sistema nervioso capaz de regenerar partes.</p>
+      </div>
+
+      <div class="card" data-title="Pez Piedra" data-icon="🪨" data-img="Img/pez piedra.jfif" data-short="El pez más venenoso de todo el mundo." data-habitat="Fondos rocosos o coralinos del Indopacífico." data-features="Camuflaje perfecto idéntico a una roca marina viva." data-food="Peces pequeños y camarones al acecho." data-extra="Su veneno puede ser mortal para los humanos si pisás uno.">
+        <div class="card-icon">🪨</div><h3>Pez Piedra</h3><p>Se camufla de manera idéntica a una roca y su veneno es letal.</p>
+      </div>
+
+      <div class="card" data-title="Anguila Eléctrica" data-icon="⚡" data-img="Img/anguila electrica.jfif" data-short="Capaz de generar fuertes descargas eléctricas." data-habitat="Cuencas fluviales costeras y aguas densas." data-features="Órganos especiales que producen hasta 600 voltios." data-food="Peces, anfibios y aves pequeñas." data-extra="Usan la electricidad para cazar and defenderse.">
+        <div class="card-icon">⚡</div><h3>Anguila Eléctrica</h3><p>Produce choques de alto voltaje para aturdir a sus presas en un segundo.</p>
+      </div>
+
+      <div class="card" data-title="Pingüino Emperador" data-icon="🐧" data-img="Img/pinguino emperador.jfif" data-short="Aves que cambiaron el vuelo por el nado." data-habitat="Las heladas costas de la Antártida." data-features="Plumaje denso e impermeable que los aísla del frío." data-food="Peces, krill y calamares." data-extra="Pueden sumergirse a más de 500 metros bajo el agua.">
+        <div class="card-icon">🐧</div><h3>Pingüino Emperador</h3><p>Expertos nadadores adaptados a vivir en los climas más fríos del planeta.</p>
+      </div>
+
+      <div class="card" data-title="Morsa" data-icon="🐗" data-img="Img/morsa.jfif" data-short="Reconocibles por sus gigantescos colmillos." data-habitat="Regiones polares y mares árticos." data-features="Grandes colmillos de marfil y bigotes muy gruesos." data-food="Almejas, caracoles y organismos del fondo." data-extra="Usan sus colmillos para trepar al hielo y defenderse.">
+        <div class="card-icon">🐗</div><h3>Morsa</h3><p>Grandes mamíferos marinos árticos de piel gruesa y largos colmillos.</p>
+      </div>
+
+      <div class="card" data-title="Nutria Marina" data-icon="🦦" data-img="Img/nutria.jfif" data-short="Usan piedras para abrir sus alimentos." data-habitat="Bosques de kelp y costas del Pacífico Norte." data-features="El pelaje más denso de todo el reino animal." data-food="Erizos de mar, cangrejos y almejas." data-extra="Duermen flotando de espaldas agarradas de algas.">
+        <div class="card-icon">🦦</div><h3>Nutria Marina</h3><p>Animales muy listos que usan herramientas para romper caparazones.</p>
+      </div>
+
+      <div class="card" data-title="Erizo de Mar" data-icon="🦔" data-img="Img/erizo de mar.jfif" data-short="Cubiertos por una armadura de espinas móviles." data-habitat="Fondos rocosos y arrecifes de coral." data-features="Cuerpo esférico con púas afiladas defensivas." data-food="Algas y pequeños restos orgánicos." data-extra="Se mueven usando pequeños pies con ventosas escondidos.">
+        <div class="card-icon">🦔</div><h3>Erizo de Mar</h3><p>Criaturas espinosas esenciales para controlar las algas del arrecife.</p>
+      </div>
+
+      <div class="card" data-title="Pez Espada" data-icon="🗡️" data-img="Img/pez espada.jfif" data-short="Veloz depredador con un pico afilado." data-habitat="Océanos tropicales y templados de todo el mundo." data-features="Pico largo, aplanado y afilado similar a una espada." data-food="Calamares, atunes y peces voladores." data-extra="Alcanzan velocidades de hasta 90 km/h al cazar.">
+        <div class="card-icon">🗡️</div><h3>Pez Espada</h3><p>Famoso por su pico superior prolongado que usa para cortar presas.</p>
+      </div>
+
+      <div class="card" data-title="Nautilus" data-icon="🐚" data-img="Img/nautilus.jfif" data-short="Un fósil viviente con una concha perfecta." data-habitat="Pendientes de arrecifes profundos del Pacífico." data-features="Concha espiral dividida en cámaras con gas para flotar." data-food="Cangrejos, carroña y peces pequeños." data-extra="No ha cambiado casi nada en 400 millones de años.">
+        <div class="card-icon">🐚</div><h3>Nautilus</h3><p>Molusco antiguo pariente del pulpo con un caparazón geométrico hermoso.</p>
+      </div>
+
+      <div class="card" data-title="Iguana Marina" data-icon="🦎" data-img="Img/iguana marina.jfif" data-short="El único lagarto que busca comida en el mar." data-habitat="Costas rocosas de las Islas Galápagos." data-features="Garras fuertes para aferrarse a rocas bajo el agua fuerte." data-food="Algas marinas adheridas a las piedras." data-extra="Expulsan el exceso de sal marina estornudando.">
+        <div class="card-icon">🦎</div><h3>Iguana Marina</h3><p>Un reptil único capaz de sumergirse a pulmón para pastar algas.</p>
+      </div>
+
+      <div class="card" data-title="Dragón Azul" data-icon="🐉" data-img="Img/dragon azul.jfif" data-short="Un nudibranquio flotante hermoso y venenoso." data-habitat="Aguas templadas y tropicales en mar abierto." data-features="Flota boca arriba usando la tensión superficial del agua." data-food="Carabelas portuguesas (medusas venenosas)." data-extra="Roba el veneno de sus presas para usarlo como defensa.">
+        <div class="card-icon">🐉</div><h3>Dragón Azul</h3><p>Una diminuta babosa marina que parece un dragón de fantasía azul.</p>
+      </div>
+
+      <div class="card" data-title="Tiburón Ballena" data-icon="🐋" data-img="Img/tiburon ballena.jfif" data-short="El pez más grande existente en la actualidad." data-habitat="Mares cálidos y de características tropicales." data-features="Piel gris con un patrón hermoso de manchas blancas únicas." data-food="Plancton, krill y larvas de cangrejo." data-extra="Son totalmente dóciles y los buzos nadan con ellos.">
+        <div class="card-icon">🐋</div><h3>Tiburón Ballena</h3><p>Un gigante amable del océano que mide hasta 12 metros de longitud.</p>
+      </div>
+
+      <div class="card" data-title="Pez Volador" data-icon="✈️" data-img="Img/pez volador.jfif" data-short="Capaz de planear largas distancias fuera del agua." data-habitat="Aguas superficiales tropicales de mar abierto." data-features="Aletas pectorales muy grandes que actúan como alas." data-food="Plancton y pequeños organismos superficiales." data-extra="Pueden planear más de 200 metros para escapar de depredadores.">
+        <div class="card-icon">✈️</div><h3>Pez Volador</h3><p>Saltan fuera del océano y planean impulsados por el viento marino.</p>
+      </div>
+
+      <div class="card" data-title="Barracuda" data-icon="🐟" data-img="Img/barracuda.jfif" data-short="Depredador veloz de dientes afilados como dagas." data-habitat="Sistemas de arrecifes tropicales y manglares." data-features="Cuerpo alargado e hidrodinámico con mandíbulas prominentes." data-food="Peces de arrecife y calamares." data-extra="Les atraen los objetos brillantes que reflejan luz bajo el agua.">
+        <div class="card-icon">🐟</div><h3>Barracuda</h3><p>Cazador solitario feroz conocido por sus ataques a velocidades relámpago.</p>
+      </div>
+
+      <div class="card" data-title="Pulpo de Anillos Azules" data-icon="🔵" data-img="Img/pulpo anillos azules.jfif" data-short="Pequeño pero con uno de los venenos más letales." data-habitat="Arrecifes de coral y charcos intermareales del Pacífico." data-features="Muestra anillos azules brillantes cuando se siente amenazado." data-food="Cangrejos, camarones y peces heridos." data-extra="Su veneno no tiene antídoto conocido todavía.">
+        <div class="card-icon">🔵</div><h3>Pulpo Anillos Azules</h3><p>Mide menos de 15 cm pero su mordedura paraliza en minutos.</p>
+      </div>
+
+      <div class="card" data-title="Pez Sol" data-icon="☀️" data-img="Img/pez sol.jfif" data-short="El pez óseo más pesado del planeta." data-habitat="Aguas templadas y tropicales de todo el mundo." data-features="Cuerpo aplastado lateralmente, enorme y sin cola verdadera." data-food="Medusas, zooplancton y calamares." data-extra="Les gusta flotar de lado en la superficie para calentarse.">
+        <div class="card-icon">☀️</div><h3>Pez Sol</h3><p>Conocido también como Mola Mola, parece una cabeza flotante gigante.</p>
+      </div>
+
+      <div class="card" data-title="Dugongo" data-icon="🧜" data-img="Img/dugongo.jfif" data-short="El primo marino de los elefantes terrestres." data-habitat="Aguas costeras pacíficas y manglares." data-features="Cola bífida como un delfín pero boca adaptada a pastar." data-food="Hierbas marinas de fondos poco profundos." data-extra="Dieron origen a los mitos antiguos de las sirenas.">
+        <div class="card-icon">🧜</div><h3>Dugongo</h3><p>Mamífero marino dócil, pariente cercano del manatí costero.</p>
+      </div>
+
+      <div class="card" data-title="Pez Diablo Negro" data-icon="👹" data-img="Img/pez litnerna.jfif" data-short="Terrorífica criatura de la zona abisal." data-habitat="Profundidades extremas a más de 2000 metros." data-features="Boca gigante repleta de dientes transparentes agudos." data-food="Cualquier pez que quepa en su estómago expandible." data-extra="La hembra lleva al macho pegado como un parásito pequeño.">
+        <div class="card-icon">👹</div><h3>Pez Diablo Negro</h3><p>Un rape abisal clásico con una antena luminosa de cebo.</p>
+      </div>
+
+      <div class="card" data-title="Carabela Portuguesa" data-icon="⛵" data-img="Img/carabela portuguesa.jfif" data-short="No es una medusa, es una colonia flotante." data-habitat="Mares abiertos cálidos del Atlántico e Índico." data-features="Vela superior inflada de gas y tentáculos eternos venenosos." data-food="Peces pequeños atrapados en sus redes." data-extra="Sus filamentos pueden medir hasta 50 metros de largo.">
+        <div class="card-icon">⛵</div><h3>Carabela Portuguesa</h3><p>Un falso organismo flotante cuyas picaduras causan dolores extremos.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <dialog class="modal-content" id="animalDialog" aria-labelledby="dialogTitle" aria-describedby="dialogDesc">
+    <button class="modal-close" id="modalClose">&times;</button>
+    <img src="" alt="" class="modal-img" id="modalImg">
+    <div class="modal-title-container">
+      <span class="modal-icon" id="modalIcon"></span>
+      <h3 class="modal-title" id="dialogTitle"></h3>
+    </div>
+    <p class="modal-text" id="dialogDesc"></p>
+    <div class="modal-info">
+      <p><strong>Lugar donde vive:</strong> <span id="modalHabitat"></span></p>
+      <p><strong>Características:</strong> <span id="modalFeatures"></span></p>
+      <p><strong>Alimentación:</strong> <span id="modalFood"></span></p>
+      <p><strong>Dato extra:</strong> <span id="modalExtra"></span></p>
+    </div>
+  </dialog>
+
+  <footer>
+    <p class="footer-logo">OCEAN <span>LIFE</span></p>
+    <p class="footer-copy">© 2026 Ocean Life — Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    const dialog = document.getElementById('animalDialog');
+    const closeBtn = document.getElementById('modalClose');
+    const buscador = document.getElementById('buscador'); 
+    const modalImg = document.getElementById('modalImg');
+    const modalIcon = document.getElementById('modalIcon');
+    const dialogTitle = document.getElementById('dialogTitle');
+    const dialogDesc = document.getElementById('dialogDesc');
+    const modalHabitat = document.getElementById('modalHabitat');
+    const modalFeatures = document.getElementById('modalFeatures');
+    const modalFood = document.getElementById('modalFood');
+    const modalExtra = document.getElementById('modalExtra');
+
+    let lastFocused = null;
+
+    buscador.addEventListener('input', (e) => {
+      const termino = e.target.value.toLowerCase().trim();
+
+      cards.forEach(card => {
+        const nombreAnimal = card.dataset.title.toLowerCase();
+        if (nombreAnimal.includes(termino)) {
+          card.style.display = "block"; 
+        } else {
+          card.style.display = "none"; 
+        }
+      });
+    });
+    
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        lastFocused = card;
+        modalImg.src = card.dataset.img;
+        modalImg.alt = card.dataset.title;
+        modalIcon.textContent = card.dataset.icon;
+        dialogTitle.textContent = card.dataset.title;
+        dialogDesc.textContent = card.dataset.short;
+        modalHabitat.textContent = card.dataset.habitat;
+        modalFeatures.textContent = card.dataset.features;
+        modalFood.textContent = card.dataset.food;
+        modalExtra.textContent = card.dataset.extra;
+        dialog.showModal();
+        closeBtn.focus({ preventScroll: true });
+      });
+    });
+
+    function closeDialog() {
+      dialog.close();
+      if (lastFocused) lastFocused.focus();
+    }
+
+    closeBtn.addEventListener('click', closeDialog);
+
+    dialog.addEventListener('click', (e) => {
+      const rect = dialog.getBoundingClientRect();
+      const inside = (
+        rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX && e.clientX <= rect.left + rect.width
+      );
+      if (!inside) closeDialog();
+    });
+  </script>
+  <script>
+  window.addEventListener('scroll', () => {
+    const progressBar = document.getElementById('scroll-progress-bar');
+    if (progressBar) {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      progressBar.style.width = scrolled + '%';
+    }
+  });
+</script>
+  <script src="efecto.js"></script>
+<button id="btn-back-to-top" title="Volver arriba" aria-label="Volver arriba">↑</button>
+</body>
+</html>
