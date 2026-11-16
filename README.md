@@ -38,3 +38,10 @@ ocean-life/
    git clone https://github.com/leandroarbeletche-web/ocean-life.git
    ```
 2. Abrí `index.html` en el navegador.
+
+## Tecnologías y herramientas
+
+- **HTML5** para la estructura de las páginas.
+- **CSS3** para el diseño (fuentes Playfair Display e Inter de Google Fonts).
+- **JavaScript** para el simulador, la trivia y las animaciones.
+- **Git y GitHub** para el control de versiones.
