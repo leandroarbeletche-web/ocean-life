@@ -1,12 +1,7 @@
-console.log("JavaScript conectado correctamente");
-
 let tituloPrincipal = document.querySelector("h1");
 let inputProfundidad = document.querySelector("#profundidad");
 let botonComprobar = document.querySelector("#btn-comprobar");
 let resultadoZona = document.querySelector("#resultado-zona");
-console.log("Elemento 1 seleccionado:", tituloPrincipal);
-console.log("Elemento 2 seleccionado:", botonComprobar);
-console.log("Elemento 3 seleccionado:", inputProfundidad);
 
 if (botonComprobar) {
   botonComprobar.addEventListener("click", function() {
