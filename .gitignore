@@ -1,0 +1,16 @@
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Accesos directos de Windows
+*.lnk
+
+# Configuración del editor
+.vscode/
+
+# Archivos temporales y privados
+*.log
+*.tmp
+contrasenas.txt
+.env
